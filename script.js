@@ -1,10 +1,9 @@
-              /*DEBUT DU SCRIPT*/
-//JE RECUPERE TOUT LES ELEMENTS 
-var article = document.querySelectorAll('.item');
-var ParentArticle = document.querySelector('.parent');
-var prixTotal = document.getElementById('total-price'); 
+             //JE RECUPERE TOUT LES ELEMENTS 
+var article = document.querySelectorAll('.objet');
+var BambaArticle = document.querySelector('.Bamba');
+var prixTotal = document.getElementById('total-prix'); 
 
-//AUGMENTATION , DIMINUTION , SUPRESSION ET FAVORITE
+//TOUT LES BOUTTONS
 for (var i = 0; i < article.length; i++) {
 
 //RECUPERATION DES BOUTONS ET DES PRIX
@@ -12,19 +11,19 @@ for (var i = 0; i < article.length; i++) {
     let plus = article[i].children[3]; //bouton +
     let btnDelete = article[i].children[4];// bouton supprimer
     let articleNum = article[i].children[2];//nombre d article
-    let quantity = parseInt(articleNum.innerText);//la quantite
+    let quantiteproduit = parseInt(articleNum.innerText);//la quantite
     let prix = article[i].children[7].children[0];//prix total tout les articles
     let prixUnit = article[i].children[6];//prix unitaire
-    let ArticlePrice = parseInt(prixUnit.innerText);//prix de l article en texte
+    let prixdelarticle = parseInt(prixUnit.innerText);//prix de l article en texte
     let Fav = article[i].children[5];//bouton favoris
 
 
-//DECRIMENTER LE NOMBRE D'ARTICLE ET METTRE A JOUR LE PRIX
+//DIMINUER LE NOMBRE D'ARTICLE ET METTRE A JOUR LE PRIX
     moins.addEventListener('click', function () {
-        if (quantity > 0) {
-            quantity--;
-            articleNum.innerHTML = quantity;
-            prix.innerText = quantity * ArticlePrice;
+        if (quantiteproduit > 0) {
+            quantiteproduit--;
+            articleNum.innerHTML = quantiteproduit;
+            prix.innerText = quantiteproduit * prixdelarticle;
             calSum(); 
         }
     });
@@ -32,19 +31,21 @@ for (var i = 0; i < article.length; i++) {
 
 //AUGMENTER LE NOMBRE D'ARTICLE ET METTRE A JOUR
     plus.addEventListener('click', function () {
-        quantity++;
-        articleNum.innerHTML = quantity;
-        prix.innerText = quantity * ArticlePrice;
+        quantiteproduit++;
+        articleNum.innerHTML = quantiteproduit;
+        prix.innerText = quantiteproduit * prixdelarticle;
         calSum(); 
     });
 
-//SUPPRIMER UN ARTICLE ET METTRE A JOUR
+    // Pour le boutton suprimer
     btnDelete.addEventListener('click', function (e) {
-        e.target.parentElement.remove();
+        var BambaItem = e.target.BambaElement;
+        BambaItem.remove();
         calSum(); 
     });
+    
 
-//AJOUT EN FAVORIS ET CHANGEMENT DE COULEUR
+//AJOUTER FAVORIS ET CHANGER LE COULEUR QUAND J APPUIE DESSUS 
     const colors = ['red']; 
     let currentIndex = 0;
 
@@ -55,18 +56,20 @@ for (var i = 0; i < article.length; i++) {
     });
 }
 
-//CALCUL DES PRIX TOTAUX
+//CALCUL DES PRIX prixprixprixtotaux
 function calSum() {
     let total = 0;
 
     // Parcourez chaque article pour calculer le total
     for (var i = 0; i < article.length; i++) {
-        total += parseInt(article[i].querySelector('.price').innerText.replace('$', '')) * parseInt(article[i].querySelector('.quantity').innerText);
+        total += parseInt(article[i].querySelector('.prix').innerText.replace('FCFA', '')) * parseInt(article[i].querySelector('.quantiteproduit').innerText);
     }
 
-    prixTotal.textContent = total.toFixed(2) + ' $';   
+    prixTotal.textContent = total.toFixed(2) + ' FCFA';   
 }
 
-    /*FIN DU SCRIPT*/   
+    /*FIN DU CODE*/   
+
+  
 
   
