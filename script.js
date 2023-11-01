@@ -1,6 +1,6 @@
-             //JE RECUPERE TOUT LES ELEMENTS 
+//JE RECUPERE TOUT LES ELEMENTS 
 var article = document.querySelectorAll('.objet');
-var BambaArticle = document.querySelector('.Bamba');
+var bambaArticle = document.querySelector('.bamba');
 var prixTotal = document.getElementById('total-prix'); 
 
 //TOUT LES BOUTTONS
@@ -39,10 +39,9 @@ for (var i = 0; i < article.length; i++) {
 
     // Pour le boutton suprimer
     btnDelete.addEventListener('click', function (e) {
-        var BambaItem = e.target.BambaElement;
-        BambaItem.remove();
-        calSum(); 
-    });
+        e.target.parentElement.remove();
+        calSum();
+    });;
     
 
 //AJOUTER FAVORIS ET CHANGER LE COULEUR QUAND J APPUIE DESSUS 
